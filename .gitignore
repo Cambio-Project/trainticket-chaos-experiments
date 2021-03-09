@@ -8,6 +8,7 @@ __pycache__/
 
 # Chaos Toolkit
 journal.json
+loadgenerator/
 
 # IntellJ
 *.iml
