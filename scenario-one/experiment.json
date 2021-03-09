@@ -1,8 +1,8 @@
 {
-    "version": "1.0.0",
+    "version": "0.0.1",
     "title": "What happens if we overload the food service with requests?",
     "description": "The application should recover some time after an overload.",
-    "tags": ["tls"],
+    "tags": ["trainticket"],
     "steady-state-hypothesis": {
         "title": "Response times are in normal ranges",
         "probes": [
@@ -13,70 +13,13 @@
                 "provider": {
                     "type": "python",
                     "module": "trainticket_probes",
-                    "func": "hello_world",
-                    "arguments": {
-                        "echo": "Let the light of burning bridges guide your way."
-                    }
+                    "func": "steady_state_load"
                 }
             }
         ]
     },
     "method": [
-        {
-            "type": "action",
-            "name": "swap-to-expired-cert",
-            "provider": {
-                "type": "process",
-                "path": "cp",
-                "arguments": "expired-cert.pem cert.pem"
-            }
-        },
-        {
-            "type": "probe",
-            "name": "read-tls-cert-expiry-date",
-            "provider": {
-                "type": "process",
-                "path": "openssl",
-                "arguments": "x509 -enddate -noout -in cert.pem"
-            }
-        },
-        {
-            "type": "action",
-            "name": "restart-astre-service-to-pick-up-certificate",
-            "provider": {
-                "type": "process",
-                "path": "pkill",
-                "arguments": "--echo -HUP -F astre.pid"
-            }
-        },
-        {
-            "type": "action",
-            "name": "restart-sunset-service-to-pick-up-certificate",
-            "provider": {
-                "type": "process",
-                "path": "pkill",
-                "arguments": "--echo -HUP -F sunset.pid"
-            },
-            "pauses": {
-                "after": 1
-            }
-        }
     ],
     "rollbacks": [
-        {
-            "type": "action",
-            "name": "swap-to-valid-cert",
-            "provider": {
-                "type": "process",
-                "path": "cp",
-                "arguments": "valid-cert.pem cert.pem"
-            }
-        },
-        {
-            "ref": "restart-astre-service-to-pick-up-certificate"
-        },
-        {
-            "ref": "restart-sunset-service-to-pick-up-certificate"
-        }
     ]
 }

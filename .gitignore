@@ -9,6 +9,7 @@ __pycache__/
 # Chaos Toolkit
 journal.json
 loadgenerator/
+steady-log.csv
 
 # IntellJ
 *.iml

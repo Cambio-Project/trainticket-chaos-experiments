@@ -1,0 +1,21 @@
+services:
+  - service_name: foodservice
+    protocol: http
+    response_content_type: json
+    hosts:
+      # IP/Domain of target e.g.:
+      - localhost:8080/api/v1/foodservice
+    common_headers:
+      Content-Type: application/json
+
+user_requests:
+  ######### Ergebnisdaten, causes service-2-service call #############
+  - service_name: foodservice
+    method: GET
+    uri:
+      type: COMPOSITE
+      children:
+        - text: '/foods/2021-03-04/Shang%20Hai/Su%20Zhou/D1345'
+    expected_response_codes:
+      - 200
+      - 422
