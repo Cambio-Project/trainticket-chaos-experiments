@@ -19,6 +19,25 @@
         ]
     },
     "method": [
+        {
+            "type": "action",
+            "name": "overload-foodservice",
+            "provider": {
+                "type": "python",
+                "module": "trainticket_probes",
+                "func": "food_service_overload_action"
+            }
+        },
+        {
+            "type": "probe",
+            "name": "overload-foodservice-response-check",
+            "tolerance": true,
+            "provider": {
+                "type": "python",
+                "module": "trainticket_probes",
+                "func": "food_service_overload_probe"
+            }
+        }
     ],
     "rollbacks": [
     ]
