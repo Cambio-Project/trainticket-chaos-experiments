@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tools.descartes.dlim:Sequence xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tools.descartes.dlim="http://descartes.tools/dlim/0.1" name="Scenario 1: Overload Database" terminateAfterLoops="1" firstIterationEnd="15.0" loopDuration="15.0" finalDuration="15.0">
+  <combine>
+    <function xsi:type="tools.descartes.dlim:Sequence" name="burstContainer" terminateAfterTime="15.0" firstIterationEnd="15.0" loopDuration="15.0" finalDuration="15.0">
+      <sequenceFunctionContainers name="burstOffset" duration="1.5" firstIterationEnd="1.5"/>
+      <sequenceFunctionContainers name="bursts" duration="13.5" firstIterationStart="1.5" firstIterationEnd="15.0">
+        <function xsi:type="tools.descartes.dlim:Sequence" name="bursts" terminateAfterTime="13.5" firstIterationStart="1.5" firstIterationEnd="15.0" loopDuration="100.0" finalDuration="13.5">
+          <sequenceFunctionContainers name="burst" duration="5.0" firstIterationStart="1.5" firstIterationEnd="6.5">
+            <function xsi:type="tools.descartes.dlim:ExponentialIncreaseLogarithmicDecline" peak="3000.0" peakTime="2.5"/>
+          </sequenceFunctionContainers>
+          <sequenceFunctionContainers name="wait" duration="95.0" firstIterationStart="6.5" firstIterationEnd="101.5"/>
+        </function>
+      </sequenceFunctionContainers>
+    </function>
+  </combine>
+  <sequenceFunctionContainers name="constantSeasonal" duration="15.0" firstIterationEnd="15.0">
+    <function xsi:type="tools.descartes.dlim:Constant"/>
+  </sequenceFunctionContainers>
+</tools.descartes.dlim:Sequence>
