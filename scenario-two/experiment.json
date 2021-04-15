@@ -1,0 +1,25 @@
+{
+    "version": "0.0.1",
+    "title": "How does the inside_payment service react to faulty database configs?",
+    "description": "After swapping configs, the application should behave in a faulty way",
+    "tags": ["trainticket"],
+    "steady-state-hypothesis": {
+        "title": "Everything is normal, payments should work",
+        "probes": [
+            {
+                "type": "probe",
+                "name": "inside_payment_service_working",
+                "tolerance": true,
+                "provider": {
+                    "type": "python",
+                    "module": "trainticket_probes",
+                    "func": "scenario_two_steady_state_probe"
+                }
+            }
+        ]
+    },
+    "method": [
+    ],
+    "rollbacks": [
+    ]
+}

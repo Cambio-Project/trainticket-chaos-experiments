@@ -33,3 +33,11 @@ def food_service_overload_probe():
     print(f"Average time during overload is: {mean_avg_response_time}")
     response_time_ok = mean_avg_response_time < 0.5 # Workaround due to numpy being dumb, same as above: FIXME
     return bool(response_time_ok)
+
+def scenario_two_steady_state_probe():
+    # Game plan:
+    # (1) Make a valid reservation that should then show up in the TT order list
+    # (2) Pay for that order
+    # (3) Query the inside_payment service to see whether payment was successful
+
+    return True
