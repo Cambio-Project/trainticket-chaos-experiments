@@ -36,7 +36,18 @@ def food_service_overload_probe():
     response_time_ok = mean_avg_response_time < 0.5 # Workaround due to numpy being dumb, same as above: FIXME
     return bool(response_time_ok)
 
+
+# Kills all loadgenerator processes
+def kill_load_generators():
+    os.system("pkill -f loadgenerator")
+
+
 def scenario_two_steady_state_probe():
+    # Start the Load Generator to create background load reflecting user interaction with the system
+    os.system(f"{os.getcwd()}/steady-state.sh")
+    print("Loadgenerators started, beginning steady state check")
+
+    # Log in to TrainTicket to be authorized for subsequent requests
     login_response = requests.post(f"http://localhost:8080/api/v1/users/login", json = {"username": "admin", "password": "222222"})
     login_response_parsed = login_response.json()
     auth_header = {'Authorization': f"Bearer {login_response_parsed['data']['token']}"}
@@ -70,6 +81,7 @@ def scenario_two_steady_state_probe():
     #print(f"Reservation response: {reserve_response.json()}")
     if not reserve_response.json()["status"] == 1:
         print("Reservation failed, failing this probe.")
+        kill_load_generators()
         return False
 
     # Fetch the newest order, which _should_ be the one we just created
@@ -95,6 +107,9 @@ def scenario_two_steady_state_probe():
     paid_order_ids = [payment["orderId"] for payment in payment_query_result.json()["data"]]
     if order_id not in paid_order_ids:
         print("No payment exists for this order - failing the probe.")
+        kill_load_generators()
         return False
 
+    print("Everything successful, ending experiment with success.")
+    kill_load_generators()
     return True
