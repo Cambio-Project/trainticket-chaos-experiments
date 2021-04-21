@@ -19,7 +19,53 @@
         ]
     },
     "method": [
+        {
+            "type": "action",
+            "name": "switch-db-configs",
+            "provider": {
+                "type": "python",
+                "module": "trainticket_probes",
+                "func": "scenario_two_switch_bad_config"
+            }
+        },
+        {
+            "type": "probe",
+            "name": "inside_payment_service_broken",
+            "tolerance": true,
+            "provider": {
+                "type": "python",
+                "module": "trainticket_probes",
+                "func": "scenario_two_broken_probe"
+            }
+        },
+        {
+            "type": "action",
+            "name": "rollback-mongo-config",
+            "provider": {
+                "type": "python",
+                "module": "trainticket_probes",
+                "func": "scenario_two_rollback_config"
+            }
+        }
     ],
     "rollbacks": [
+        {
+            "type": "action",
+            "name": "kill-remaining-loadgenerators",
+            "provider": {
+                "type": "python",
+                "module": "trainticket_probes",
+                "func": "kill_load_generators"
+            }
+        },
+        {
+            "type": "action",
+            "name": "rollback-mongo-config",
+            "provider": {
+                "type": "python",
+                "module": "trainticket_probes",
+                "func": "scenario_two_rollback_config"
+            }
+        }
     ]
 }

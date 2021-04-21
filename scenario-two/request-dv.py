@@ -1,5 +1,6 @@
-import requests
 import datetime
+
+import requests
 
 # Log into the TrainTicket system
 login_response = requests.post(f"http://localhost:8080/api/v1/users/login", json = {"username": "admin", "password": "222222"})
