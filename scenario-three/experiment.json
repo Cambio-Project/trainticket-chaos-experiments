@@ -1,19 +1,19 @@
 {
     "version": "0.0.1",
     "title": "How does the frontend react to a breach in the content-type contract?",
-    "description": "After switching the preserve service version, the frontend should no longer parse the responses correctly",
+    "description": "After switching the preserve service version, responses should have the wrong content-type",
     "tags": ["trainticket"],
     "steady-state-hypothesis": {
-        "title": "Everything is normal, payments should work",
+        "title": "Everything is normal, ticket reservations should work",
         "probes": [
             {
                 "type": "probe",
-                "name": "inside_payment_service_working",
+                "name": "preserve-service-working",
                 "tolerance": true,
                 "provider": {
                     "type": "python",
                     "module": "trainticket_probes",
-                    "func": "scenario_two_steady_state_probe"
+                    "func": "scenario_three_steady_state_probe"
                 }
             }
         ]
@@ -21,30 +21,30 @@
     "method": [
         {
             "type": "action",
-            "name": "switch-db-configs",
+            "name": "switch-faulty-preserve-controller",
             "provider": {
                 "type": "python",
                 "module": "trainticket_probes",
-                "func": "scenario_two_switch_bad_config"
+                "func": "scenario_three_switch_faulty_preserve_controller"
             }
         },
         {
             "type": "probe",
-            "name": "inside_payment_service_broken",
+            "name": "preserve-service-broken",
             "tolerance": true,
             "provider": {
                 "type": "python",
                 "module": "trainticket_probes",
-                "func": "scenario_two_broken_probe"
+                "func": "scenario_three_broken_probe"
             }
         },
         {
             "type": "action",
-            "name": "rollback-mongo-config",
+            "name": "rollback-preserve-controller",
             "provider": {
                 "type": "python",
                 "module": "trainticket_probes",
-                "func": "scenario_two_rollback_config"
+                "func": "scenario_three_rollback_preserve_controller"
             }
         }
     ],
@@ -60,11 +60,11 @@
         },
         {
             "type": "action",
-            "name": "rollback-mongo-config",
+            "name": "rollback-preserve-controller",
             "provider": {
                 "type": "python",
                 "module": "trainticket_probes",
-                "func": "scenario_two_rollback_config"
+                "func": "scenario_three_rollback_preserve_controller"
             }
         }
     ]
