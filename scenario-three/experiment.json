@@ -1,0 +1,71 @@
+{
+    "version": "0.0.1",
+    "title": "How does the frontend react to a breach in the content-type contract?",
+    "description": "After switching the preserve service version, the frontend should no longer parse the responses correctly",
+    "tags": ["trainticket"],
+    "steady-state-hypothesis": {
+        "title": "Everything is normal, payments should work",
+        "probes": [
+            {
+                "type": "probe",
+                "name": "inside_payment_service_working",
+                "tolerance": true,
+                "provider": {
+                    "type": "python",
+                    "module": "trainticket_probes",
+                    "func": "scenario_two_steady_state_probe"
+                }
+            }
+        ]
+    },
+    "method": [
+        {
+            "type": "action",
+            "name": "switch-db-configs",
+            "provider": {
+                "type": "python",
+                "module": "trainticket_probes",
+                "func": "scenario_two_switch_bad_config"
+            }
+        },
+        {
+            "type": "probe",
+            "name": "inside_payment_service_broken",
+            "tolerance": true,
+            "provider": {
+                "type": "python",
+                "module": "trainticket_probes",
+                "func": "scenario_two_broken_probe"
+            }
+        },
+        {
+            "type": "action",
+            "name": "rollback-mongo-config",
+            "provider": {
+                "type": "python",
+                "module": "trainticket_probes",
+                "func": "scenario_two_rollback_config"
+            }
+        }
+    ],
+    "rollbacks": [
+        {
+            "type": "action",
+            "name": "kill-remaining-loadgenerators",
+            "provider": {
+                "type": "python",
+                "module": "trainticket_probes",
+                "func": "kill_load_generators"
+            }
+        },
+        {
+            "type": "action",
+            "name": "rollback-mongo-config",
+            "provider": {
+                "type": "python",
+                "module": "trainticket_probes",
+                "func": "scenario_two_rollback_config"
+            }
+        }
+    ]
+}
