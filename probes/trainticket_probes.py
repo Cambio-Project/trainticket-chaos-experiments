@@ -187,9 +187,12 @@ def scenario_two_broken_probe():
 
     # Query payments/orders and check whether payment has actually worked (meaning that a payment entity exists for the order)
     payment_query_result = requests.get("http://localhost:18673/api/v1/inside_pay_service/inside_payment/payment", headers=auth_header)
-    if payment_query_result.json()["status"] == 0:
-        print("Payment querying has failed, indicating action success.")
+    paid_order_ids = [payment["orderId"] for payment in payment_query_result.json()["data"]]
+    if order_id not in paid_order_ids:
+        print("No payment exists for this order - fault is happening.")
+        kill_load_generators()
         return True
 
+    print("The order has been paid, indicating that the fault injection failed.")
     kill_load_generators()
     return False
