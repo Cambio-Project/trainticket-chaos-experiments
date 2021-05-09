@@ -1,5 +1,10 @@
 #!/usr/bin/python3
 import os
+import subprocess
+import time
+import random
+import yaml
+
 import requests
 import datetime
 
@@ -301,3 +306,62 @@ def scenario_three_broken_probe():
     print("The response type is still JSON, indicating that the fault injection failed.")
     kill_load_generators()
     return False
+
+
+# Returns after detecting that TrainTicket has bootet
+def probe_wait_trainticket_running_k8s():
+    trainticket_booted = False
+    while not trainticket_booted:
+        status = subprocess.getoutput("kubectl get pods | grep 0/1")
+        trainticket_booted = not status
+        print(f"Waiting 30 seconds. TrainTicket status is: {status}")
+        time.sleep(30)
+    return
+
+
+# Waits until a pod error has occured
+def probe_wait_poderror_trainticket_k8s():
+    error_occured = False
+    while not error_occured:
+        pods = subprocess.getoutput("kubectl get pods | grep 0/1")
+        number_of_lines = pods.count('\n')
+        error_occured = ("Error" in pods or "CrashLoopBackOff" in pods) and number_of_lines < 10
+        print(f"Waiting 15 seconds. Pod status is: {pods}")
+        time.sleep(15)
+    return
+
+
+def twentyfive_percent_chance():
+    nonce = random.randint(1, 4)
+    return nonce == 1
+
+
+def action_scramble_and_redeploy():
+    invalid_dns_config = {'dnsPolicy': 'None', 'dnsConfig': {'nameservers': ['192.168.1.213']}}
+    with open('quickstart-ts-deployment-part2.yml') as file:
+        docs = yaml.load_all(file, Loader=yaml.FullLoader)
+        scrambled_docs = []
+        for doc in docs:
+            if doc['kind'] == 'Deployment' and twentyfive_percent_chance():
+                doc["spec"]["template"]["spec"].update(invalid_dns_config)
+
+            scrambled_docs.append(doc)
+
+        # This should overwrite the file in place, as according to: https://stackoverflow.com/a/53607914
+        with open("scrambled-yaml.yaml", "w") as outfile:
+            yaml.dump_all(scrambled_docs, outfile, default_flow_style=False)
+
+    print("Finished scrambling, redeploying next.")
+    os.system(f"{os.getcwd()}/replace-and-redeploy-2.sh")
+
+
+def probe_all_pods_ok():
+    pods = subprocess.getoutput("kubectl get pods")
+    pod_rows = pods.splitlines()
+    del pod_rows[0]
+    faulty_pods_exist = False
+    for row in pod_rows:
+        faulty_pods_exist = not ("1/1" in row and "Running" in row)
+        if faulty_pods_exist:
+            break
+    return not faulty_pods_exist

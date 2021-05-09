@@ -1,0 +1,44 @@
+{
+    "version": "0.0.1",
+    "title": "How does TrainTicket react to DNS dropping out for 25% of pods?",
+    "description": "After DNS drops out, we expect TrainTicket to have crashing pods and general mayhem.",
+    "tags": ["trainticket"],
+    "steady-state-hypothesis": {
+        "title": "Everything is normal, all pods should be healty.",
+        "probes": [
+            {
+                "type": "probe",
+                "name": "all_pods_healthy",
+                "tolerance": true,
+                "provider": {
+                    "type": "python",
+                    "module": "trainticket_probes",
+                    "func": "probe_all_pods_ok"
+                }
+            }
+        ]
+    },
+    "method": [
+        {
+            "type": "action",
+            "name": "scramble-config-and-redeploy",
+            "provider": {
+                "type": "python",
+                "module": "trainticket_probes",
+                "func": "action_scramble_and_redeploy"
+            }
+        },
+        {
+            "type": "probe",
+            "name": "wait-for-pod-errors",
+            "tolerance": true,
+            "provider": {
+                "type": "python",
+                "module": "trainticket_probes",
+                "func": "probe_wait_poderror_trainticket_k8s"
+            }
+        }
+    ],
+    "rollbacks": [
+    ]
+}
