@@ -1,0 +1,67 @@
+[36m[2021-05-10 15:32:26 DEBUG] [cli:73][39m ###############################################################################
+[36m[2021-05-10 15:32:26 DEBUG] [cli:74][39m Running command 'run'
+[36m[2021-05-10 15:32:26 DEBUG] [cli:78][39m Using settings file '/home/elcpt/.chaostoolkit/settings.yaml'
+[36m[2021-05-10 15:32:27 DEBUG] [settings:26][39m The Chaos Toolkit settings file could not be found at '/home/elcpt/.chaostoolkit/settings.yaml'.
+[36m[2021-05-10 15:32:27 DEBUG] [__init__:355][39m No controls to apply on 'loader'
+[36m[2021-05-10 15:32:27 DEBUG] [__init__:355][39m No controls to apply on 'loader'
+[36m[2021-05-10 15:32:27 DEBUG] [caching:25][39m Building activity cache...
+[36m[2021-05-10 15:32:27 DEBUG] [caching:35][39m Cached 3 activities
+[32m[2021-05-10 15:32:27 INFO] [experiment:47][39m Validating the experiment's syntax
+[36m[2021-05-10 15:32:27 DEBUG] [configuration:54][39m Loading configuration...
+[36m[2021-05-10 15:32:27 DEBUG] [secret:75][39m Loading secrets...
+[36m[2021-05-10 15:32:27 DEBUG] [secret:92][39m Secrets loaded
+[32m[2021-05-10 15:32:27 INFO] [experiment:96][39m Experiment looks valid
+[36m[2021-05-10 15:32:27 DEBUG] [caching:42][39m Clearing activities cache
+[36m[2021-05-10 15:32:27 DEBUG] [caching:25][39m Building activity cache...
+[36m[2021-05-10 15:32:27 DEBUG] [caching:35][39m Cached 3 activities
+[36m[2021-05-10 15:32:27 DEBUG] [configuration:54][39m Loading configuration...
+[36m[2021-05-10 15:32:27 DEBUG] [secret:75][39m Loading secrets...
+[36m[2021-05-10 15:32:27 DEBUG] [secret:92][39m Secrets loaded
+[32m[2021-05-10 15:32:27 INFO] [run:323][39m Running experiment: What happens if we overload the food service with requests?
+[36m[2021-05-10 15:32:27 DEBUG] [__init__:39][39m Initializing controls
+[32m[2021-05-10 15:32:27 INFO] [run:342][39m Steady-state strategy: default
+[32m[2021-05-10 15:32:27 INFO] [run:345][39m Rollbacks strategy: default
+[36m[2021-05-10 15:32:27 DEBUG] [__init__:355][39m No controls to apply on 'experiment'
+[36m[2021-05-10 15:32:27 DEBUG] [run:466][39m Running steady-state hypothesis before the method
+[32m[2021-05-10 15:32:27 INFO] [hypothesis:183][39m Steady state hypothesis: Response times are in normal ranges
+[36m[2021-05-10 15:32:27 DEBUG] [__init__:355][39m No controls to apply on 'hypothesis'
+[36m[2021-05-10 15:32:27 DEBUG] [__init__:355][39m No controls to apply on 'activity'
+[32m[2021-05-10 15:32:27 INFO] [activity:161][39m Probe: response-times-food-service-normal
+[36m[2021-05-10 15:32:27 DEBUG] [python:34][39m Activity 'response-times-food-service-normal' loaded from '/home/elcpt/Documents/trainticket-chaos-experiments/probes/trainticket_probes.py'
+[36m[2021-05-10 15:34:06 DEBUG] [activity:180][39m   => succeeded with 'True'
+[36m[2021-05-10 15:34:06 DEBUG] [__init__:355][39m No controls to apply on 'activity'
+[36m[2021-05-10 15:34:06 DEBUG] [hypothesis:211][39m allowed tolerance is True
+[32m[2021-05-10 15:34:06 INFO] [hypothesis:221][39m Steady state hypothesis is met!
+[36m[2021-05-10 15:34:06 DEBUG] [__init__:355][39m No controls to apply on 'hypothesis'
+[32m[2021-05-10 15:34:06 INFO] [run:553][39m Playing your experiment's method now...
+[36m[2021-05-10 15:34:06 DEBUG] [__init__:355][39m No controls to apply on 'method'
+[36m[2021-05-10 15:34:06 DEBUG] [__init__:355][39m No controls to apply on 'activity'
+[32m[2021-05-10 15:34:06 INFO] [activity:161][39m Action: overload-foodservice
+[36m[2021-05-10 15:34:06 DEBUG] [python:34][39m Activity 'overload-foodservice' loaded from '/home/elcpt/Documents/trainticket-chaos-experiments/probes/trainticket_probes.py'
+[36m[2021-05-10 15:34:21 DEBUG] [activity:182][39m   => succeeded without any result value
+[36m[2021-05-10 15:34:21 DEBUG] [__init__:355][39m No controls to apply on 'activity'
+[36m[2021-05-10 15:34:21 DEBUG] [__init__:355][39m No controls to apply on 'activity'
+[32m[2021-05-10 15:34:21 INFO] [activity:161][39m Probe: overload-foodservice-response-check
+[36m[2021-05-10 15:34:21 DEBUG] [python:34][39m Activity 'overload-foodservice-response-check' loaded from '/home/elcpt/Documents/trainticket-chaos-experiments/probes/trainticket_probes.py'
+[36m[2021-05-10 15:34:22 DEBUG] [activity:180][39m   => succeeded with 'True'
+[36m[2021-05-10 15:34:22 DEBUG] [__init__:355][39m No controls to apply on 'activity'
+[36m[2021-05-10 15:34:22 DEBUG] [__init__:355][39m No controls to apply on 'method'
+[36m[2021-05-10 15:34:22 DEBUG] [run:496][39m Running steady-state hypothesis after the method
+[32m[2021-05-10 15:34:22 INFO] [hypothesis:183][39m Steady state hypothesis: Response times are in normal ranges
+[36m[2021-05-10 15:34:22 DEBUG] [__init__:355][39m No controls to apply on 'hypothesis'
+[36m[2021-05-10 15:34:22 DEBUG] [__init__:355][39m No controls to apply on 'activity'
+[32m[2021-05-10 15:34:22 INFO] [activity:161][39m Probe: response-times-food-service-normal
+[36m[2021-05-10 15:34:22 DEBUG] [python:34][39m Activity 'response-times-food-service-normal' loaded from '/home/elcpt/Documents/trainticket-chaos-experiments/probes/trainticket_probes.py'
+[36m[2021-05-10 15:36:04 DEBUG] [activity:180][39m   => succeeded with 'True'
+[36m[2021-05-10 15:36:04 DEBUG] [__init__:355][39m No controls to apply on 'activity'
+[36m[2021-05-10 15:36:04 DEBUG] [hypothesis:211][39m allowed tolerance is True
+[32m[2021-05-10 15:36:04 INFO] [hypothesis:221][39m Steady state hypothesis is met!
+[36m[2021-05-10 15:36:04 DEBUG] [__init__:355][39m No controls to apply on 'hypothesis'
+[32m[2021-05-10 15:36:04 INFO] [run:809][39m Let's rollback...
+[36m[2021-05-10 15:36:04 DEBUG] [__init__:355][39m No controls to apply on 'rollback'
+[32m[2021-05-10 15:36:04 INFO] [rollback:25][39m No declared rollbacks, let's move on.
+[36m[2021-05-10 15:36:04 DEBUG] [__init__:355][39m No controls to apply on 'rollback'
+[32m[2021-05-10 15:36:04 INFO] [run:421][39m Experiment ended with status: completed
+[36m[2021-05-10 15:36:04 DEBUG] [__init__:355][39m No controls to apply on 'experiment'
+[36m[2021-05-10 15:36:04 DEBUG] [__init__:72][39m Cleaning up controls
+[36m[2021-05-10 15:36:04 DEBUG] [caching:42][39m Clearing activities cache
