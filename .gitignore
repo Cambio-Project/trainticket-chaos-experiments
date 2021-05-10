@@ -11,10 +11,10 @@ __pycache__/
 *.so
 
 # Chaos Toolkit
-journal.json
+#journal.json
 loadgenerator/
-steady-log.csv
-overload-log.csv
+#steady-log.csv
+#overload-log.csv
 
 # IntellJ
 *.iml
