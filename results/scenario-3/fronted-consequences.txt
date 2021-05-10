@@ -1,0 +1,6 @@
+Im frontend passiert folgendes:
+- Man kann keine Buchungen für einen Zugtyp mehr aufgeben (DongCheOne, Kürzel die mit "D" beginnen)
+- Andere Zugbuchungen gehen aber noch ("G"), genauso wie der Rest der GUI
+- Der Failure ist still, d.h. der Ladeindikator beim Buchen verschwindet nach einer Weile, aber ohne sichtbare Fehlermeldung
+- JavaScript-Konsole zeigt Fehler an, wie zu erwarten ist:
+jquery.min.js:6 POST http://192.168.1.120:8080/api/v1/preserveservice/preserve 500
