@@ -1,0 +1,141 @@
+{
+  "chaoslib-version": "1.19.0",
+  "platform": "Linux-5.4.0-72-generic-x86_64-with-glibc2.29",
+  "node": "elcpt-x1-linux",
+  "experiment": {
+    "version": "0.0.1",
+    "title": "What happens if we overload the food service with requests?",
+    "description": "The application should recover some time after an overload.",
+    "tags": [
+      "trainticket"
+    ],
+    "steady-state-hypothesis": {
+      "title": "Response times are in normal ranges",
+      "probes": [
+        {
+          "type": "probe",
+          "name": "response-times-food-service-normal",
+          "tolerance": true,
+          "provider": {
+            "type": "python",
+            "module": "trainticket_probes",
+            "func": "steady_state_load"
+          }
+        }
+      ]
+    },
+    "method": [
+      {
+        "type": "action",
+        "name": "overload-foodservice",
+        "provider": {
+          "type": "python",
+          "module": "trainticket_probes",
+          "func": "food_service_overload_action"
+        }
+      },
+      {
+        "type": "probe",
+        "name": "overload-foodservice-response-check",
+        "tolerance": true,
+        "provider": {
+          "type": "python",
+          "module": "trainticket_probes",
+          "func": "food_service_overload_probe"
+        }
+      }
+    ],
+    "rollbacks": [],
+    "dry": false
+  },
+  "start": "2021-05-10T13:32:27.594481",
+  "status": "completed",
+  "deviated": false,
+  "steady_states": {
+    "before": {
+      "steady_state_met": true,
+      "probes": [
+        {
+          "activity": {
+            "type": "probe",
+            "name": "response-times-food-service-normal",
+            "tolerance": true,
+            "provider": {
+              "type": "python",
+              "module": "trainticket_probes",
+              "func": "steady_state_load"
+            }
+          },
+          "output": true,
+          "status": "succeeded",
+          "start": "2021-05-10T13:32:27.595417",
+          "end": "2021-05-10T13:34:06.375808",
+          "duration": 98.780391,
+          "tolerance_met": true
+        }
+      ]
+    },
+    "after": {
+      "steady_state_met": true,
+      "probes": [
+        {
+          "activity": {
+            "type": "probe",
+            "name": "response-times-food-service-normal",
+            "tolerance": true,
+            "provider": {
+              "type": "python",
+              "module": "trainticket_probes",
+              "func": "steady_state_load"
+            }
+          },
+          "output": true,
+          "status": "succeeded",
+          "start": "2021-05-10T13:34:22.092327",
+          "end": "2021-05-10T13:36:04.104164",
+          "duration": 102.011837,
+          "tolerance_met": true
+        }
+      ]
+    },
+    "during": []
+  },
+  "run": [
+    {
+      "activity": {
+        "type": "action",
+        "name": "overload-foodservice",
+        "provider": {
+          "type": "python",
+          "module": "trainticket_probes",
+          "func": "food_service_overload_action"
+        }
+      },
+      "output": null,
+      "status": "succeeded",
+      "start": "2021-05-10T13:34:06.376577",
+      "end": "2021-05-10T13:34:21.980382",
+      "duration": 15.603805
+    },
+    {
+      "activity": {
+        "type": "probe",
+        "name": "overload-foodservice-response-check",
+        "tolerance": true,
+        "provider": {
+          "type": "python",
+          "module": "trainticket_probes",
+          "func": "food_service_overload_probe"
+        }
+      },
+      "output": true,
+      "status": "succeeded",
+      "start": "2021-05-10T13:34:21.983134",
+      "end": "2021-05-10T13:34:22.089365",
+      "duration": 0.106231
+    }
+  ],
+  "rollbacks": [],
+  "end": "2021-05-10T13:36:04.104966",
+  "duration": 216.5210816860199
+}
