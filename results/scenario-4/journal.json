@@ -1,0 +1,141 @@
+{
+  "chaoslib-version": "1.19.0",
+  "platform": "Linux-5.4.0-72-generic-x86_64-with-glibc2.29",
+  "node": "elcpt-mint",
+  "experiment": {
+    "version": "0.0.1",
+    "title": "How does TrainTicket react to DNS dropping out for 25% of pods?",
+    "description": "After DNS drops out, we expect TrainTicket to have crashing pods and general mayhem.",
+    "tags": [
+      "trainticket"
+    ],
+    "steady-state-hypothesis": {
+      "title": "Everything is normal, all pods should be healty.",
+      "probes": [
+        {
+          "type": "probe",
+          "name": "all_pods_healthy",
+          "tolerance": true,
+          "provider": {
+            "type": "python",
+            "module": "trainticket_probes",
+            "func": "probe_all_pods_ok"
+          }
+        }
+      ]
+    },
+    "method": [
+      {
+        "type": "action",
+        "name": "scramble-config-and-redeploy",
+        "provider": {
+          "type": "python",
+          "module": "trainticket_probes",
+          "func": "action_scramble_and_redeploy"
+        }
+      },
+      {
+        "type": "probe",
+        "name": "wait-for-pod-errors",
+        "tolerance": true,
+        "provider": {
+          "type": "python",
+          "module": "trainticket_probes",
+          "func": "probe_wait_poderror_trainticket_k8s"
+        }
+      }
+    ],
+    "rollbacks": [],
+    "dry": false
+  },
+  "start": "2021-05-10T15:23:10.731779",
+  "status": "failed",
+  "deviated": true,
+  "steady_states": {
+    "before": {
+      "steady_state_met": true,
+      "probes": [
+        {
+          "activity": {
+            "type": "probe",
+            "name": "all_pods_healthy",
+            "tolerance": true,
+            "provider": {
+              "type": "python",
+              "module": "trainticket_probes",
+              "func": "probe_all_pods_ok"
+            }
+          },
+          "output": true,
+          "status": "succeeded",
+          "start": "2021-05-10T15:23:10.732405",
+          "end": "2021-05-10T15:23:10.809077",
+          "duration": 0.076672,
+          "tolerance_met": true
+        }
+      ]
+    },
+    "after": {
+      "steady_state_met": false,
+      "probes": [
+        {
+          "activity": {
+            "type": "probe",
+            "name": "all_pods_healthy",
+            "tolerance": true,
+            "provider": {
+              "type": "python",
+              "module": "trainticket_probes",
+              "func": "probe_all_pods_ok"
+            }
+          },
+          "output": false,
+          "status": "succeeded",
+          "start": "2021-05-10T15:27:47.032129",
+          "end": "2021-05-10T15:27:47.139311",
+          "duration": 0.107182,
+          "tolerance_met": false
+        }
+      ]
+    },
+    "during": []
+  },
+  "run": [
+    {
+      "activity": {
+        "type": "action",
+        "name": "scramble-config-and-redeploy",
+        "provider": {
+          "type": "python",
+          "module": "trainticket_probes",
+          "func": "action_scramble_and_redeploy"
+        }
+      },
+      "output": null,
+      "status": "succeeded",
+      "start": "2021-05-10T15:23:10.809621",
+      "end": "2021-05-10T15:23:28.065042",
+      "duration": 17.255421
+    },
+    {
+      "activity": {
+        "type": "probe",
+        "name": "wait-for-pod-errors",
+        "tolerance": true,
+        "provider": {
+          "type": "python",
+          "module": "trainticket_probes",
+          "func": "probe_wait_poderror_trainticket_k8s"
+        }
+      },
+      "output": null,
+      "status": "succeeded",
+      "start": "2021-05-10T15:23:28.065303",
+      "end": "2021-05-10T15:27:47.031263",
+      "duration": 258.96596
+    }
+  ],
+  "rollbacks": [],
+  "end": "2021-05-10T15:27:47.139861",
+  "duration": 276.41552543640137
+}
