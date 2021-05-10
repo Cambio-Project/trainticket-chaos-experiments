@@ -259,6 +259,8 @@ def scenario_three_steady_state_probe():
 def scenario_three_switch_faulty_preserve_controller():
     print("Switching database configs to bad one")
     os.system(f"{os.getcwd()}/switch-preserve-controller.sh")
+    print("Waiting 10 seconds for the replaced service to boot.")
+    time.sleep(10)
 
 
 def scenario_three_rollback_preserve_controller():
