@@ -1,0 +1,151 @@
+{
+  "chaoslib-version": "1.19.0",
+  "platform": "Linux-5.4.0-72-generic-x86_64-with-glibc2.29",
+  "node": "elcpt-mint",
+  "experiment": {
+    "version": "0.0.1",
+    "title": "How does the frontend react to a breach in the content-type contract?",
+    "description": "After switching the preserve service version, responses should have the wrong content-type",
+    "tags": [
+      "trainticket"
+    ],
+    "steady-state-hypothesis": {
+      "title": "Everything is normal, ticket reservations should work",
+      "probes": [
+        {
+          "type": "probe",
+          "name": "preserve-service-working",
+          "tolerance": true,
+          "provider": {
+            "type": "python",
+            "module": "trainticket_probes",
+            "func": "scenario_three_steady_state_probe"
+          }
+        }
+      ]
+    },
+    "method": [
+      {
+        "type": "action",
+        "name": "switch-faulty-preserve-controller",
+        "provider": {
+          "type": "python",
+          "module": "trainticket_probes",
+          "func": "scenario_three_switch_faulty_preserve_controller"
+        }
+      },
+      {
+        "type": "probe",
+        "name": "preserve-service-broken",
+        "tolerance": true,
+        "provider": {
+          "type": "python",
+          "module": "trainticket_probes",
+          "func": "scenario_three_broken_probe"
+        }
+      }
+    ],
+    "rollbacks": [
+      {
+        "type": "action",
+        "name": "kill-remaining-loadgenerators",
+        "provider": {
+          "type": "python",
+          "module": "trainticket_probes",
+          "func": "kill_load_generators"
+        }
+      }
+    ],
+    "dry": false
+  },
+  "start": "2021-05-10T19:06:33.953705",
+  "status": "failed",
+  "deviated": true,
+  "steady_states": {
+    "before": {
+      "steady_state_met": true,
+      "probes": [
+        {
+          "activity": {
+            "type": "probe",
+            "name": "preserve-service-working",
+            "tolerance": true,
+            "provider": {
+              "type": "python",
+              "module": "trainticket_probes",
+              "func": "scenario_three_steady_state_probe"
+            }
+          },
+          "output": true,
+          "status": "succeeded",
+          "start": "2021-05-10T19:06:33.954298",
+          "end": "2021-05-10T19:06:34.252890",
+          "duration": 0.298592,
+          "tolerance_met": true
+        }
+      ]
+    },
+    "after": {
+      "steady_state_met": false,
+      "probes": [
+        {
+          "activity": {
+            "type": "probe",
+            "name": "preserve-service-working",
+            "tolerance": true,
+            "provider": {
+              "type": "python",
+              "module": "trainticket_probes",
+              "func": "scenario_three_steady_state_probe"
+            }
+          },
+          "output": false,
+          "status": "succeeded",
+          "start": "2021-05-10T19:06:56.139223",
+          "end": "2021-05-10T19:06:56.267547",
+          "duration": 0.128324,
+          "tolerance_met": false
+        }
+      ]
+    },
+    "during": []
+  },
+  "run": [
+    {
+      "activity": {
+        "type": "action",
+        "name": "switch-faulty-preserve-controller",
+        "provider": {
+          "type": "python",
+          "module": "trainticket_probes",
+          "func": "scenario_three_switch_faulty_preserve_controller"
+        }
+      },
+      "output": null,
+      "status": "succeeded",
+      "start": "2021-05-10T19:06:34.253259",
+      "end": "2021-05-10T19:06:55.971156",
+      "duration": 21.717897
+    },
+    {
+      "activity": {
+        "type": "probe",
+        "name": "preserve-service-broken",
+        "tolerance": true,
+        "provider": {
+          "type": "python",
+          "module": "trainticket_probes",
+          "func": "scenario_three_broken_probe"
+        }
+      },
+      "output": true,
+      "status": "succeeded",
+      "start": "2021-05-10T19:06:55.971767",
+      "end": "2021-05-10T19:06:56.138671",
+      "duration": 0.166904
+    }
+  ],
+  "rollbacks": [],
+  "end": "2021-05-10T19:06:56.267789",
+  "duration": 22.32173776626587
+}

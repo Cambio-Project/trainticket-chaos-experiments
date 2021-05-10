@@ -1,0 +1,64 @@
+[36m[2021-05-10 21:06:33 DEBUG] [cli:73][39m ###############################################################################
+[36m[2021-05-10 21:06:33 DEBUG] [cli:74][39m Running command 'run'
+[36m[2021-05-10 21:06:33 DEBUG] [cli:78][39m Using settings file '/home/elcpt/.chaostoolkit/settings.yaml'
+[36m[2021-05-10 21:06:33 DEBUG] [settings:26][39m The Chaos Toolkit settings file could not be found at '/home/elcpt/.chaostoolkit/settings.yaml'.
+[36m[2021-05-10 21:06:33 DEBUG] [__init__:355][39m No controls to apply on 'loader'
+[36m[2021-05-10 21:06:33 DEBUG] [__init__:355][39m No controls to apply on 'loader'
+[36m[2021-05-10 21:06:33 DEBUG] [caching:25][39m Building activity cache...
+[36m[2021-05-10 21:06:33 DEBUG] [caching:35][39m Cached 3 activities
+[32m[2021-05-10 21:06:33 INFO] [experiment:47][39m Validating the experiment's syntax
+[36m[2021-05-10 21:06:33 DEBUG] [configuration:54][39m Loading configuration...
+[36m[2021-05-10 21:06:33 DEBUG] [secret:75][39m Loading secrets...
+[36m[2021-05-10 21:06:33 DEBUG] [secret:92][39m Secrets loaded
+[32m[2021-05-10 21:06:33 INFO] [experiment:96][39m Experiment looks valid
+[36m[2021-05-10 21:06:33 DEBUG] [caching:42][39m Clearing activities cache
+[36m[2021-05-10 21:06:33 DEBUG] [caching:25][39m Building activity cache...
+[36m[2021-05-10 21:06:33 DEBUG] [caching:35][39m Cached 3 activities
+[36m[2021-05-10 21:06:33 DEBUG] [configuration:54][39m Loading configuration...
+[36m[2021-05-10 21:06:33 DEBUG] [secret:75][39m Loading secrets...
+[36m[2021-05-10 21:06:33 DEBUG] [secret:92][39m Secrets loaded
+[32m[2021-05-10 21:06:33 INFO] [run:323][39m Running experiment: How does the frontend react to a breach in the content-type contract?
+[36m[2021-05-10 21:06:33 DEBUG] [__init__:39][39m Initializing controls
+[32m[2021-05-10 21:06:33 INFO] [run:342][39m Steady-state strategy: default
+[32m[2021-05-10 21:06:33 INFO] [run:345][39m Rollbacks strategy: default
+[36m[2021-05-10 21:06:33 DEBUG] [__init__:355][39m No controls to apply on 'experiment'
+[36m[2021-05-10 21:06:33 DEBUG] [run:466][39m Running steady-state hypothesis before the method
+[32m[2021-05-10 21:06:33 INFO] [hypothesis:183][39m Steady state hypothesis: Everything is normal, ticket reservations should work
+[36m[2021-05-10 21:06:33 DEBUG] [__init__:355][39m No controls to apply on 'hypothesis'
+[36m[2021-05-10 21:06:33 DEBUG] [__init__:355][39m No controls to apply on 'activity'
+[32m[2021-05-10 21:06:33 INFO] [activity:161][39m Probe: preserve-service-working
+[36m[2021-05-10 21:06:33 DEBUG] [python:34][39m Activity 'preserve-service-working' loaded from '/home/elcpt/Documents/trainticket-chaos-experiments/probes/trainticket_probes.py'
+[36m[2021-05-10 21:06:34 DEBUG] [activity:180][39m   => succeeded with 'True'
+[36m[2021-05-10 21:06:34 DEBUG] [__init__:355][39m No controls to apply on 'activity'
+[36m[2021-05-10 21:06:34 DEBUG] [hypothesis:211][39m allowed tolerance is True
+[32m[2021-05-10 21:06:34 INFO] [hypothesis:221][39m Steady state hypothesis is met!
+[36m[2021-05-10 21:06:34 DEBUG] [__init__:355][39m No controls to apply on 'hypothesis'
+[32m[2021-05-10 21:06:34 INFO] [run:553][39m Playing your experiment's method now...
+[36m[2021-05-10 21:06:34 DEBUG] [__init__:355][39m No controls to apply on 'method'
+[36m[2021-05-10 21:06:34 DEBUG] [__init__:355][39m No controls to apply on 'activity'
+[32m[2021-05-10 21:06:34 INFO] [activity:161][39m Action: switch-faulty-preserve-controller
+[36m[2021-05-10 21:06:34 DEBUG] [python:34][39m Activity 'switch-faulty-preserve-controller' loaded from '/home/elcpt/Documents/trainticket-chaos-experiments/probes/trainticket_probes.py'
+[36m[2021-05-10 21:06:55 DEBUG] [activity:182][39m   => succeeded without any result value
+[36m[2021-05-10 21:06:55 DEBUG] [__init__:355][39m No controls to apply on 'activity'
+[36m[2021-05-10 21:06:55 DEBUG] [__init__:355][39m No controls to apply on 'activity'
+[32m[2021-05-10 21:06:55 INFO] [activity:161][39m Probe: preserve-service-broken
+[36m[2021-05-10 21:06:55 DEBUG] [python:34][39m Activity 'preserve-service-broken' loaded from '/home/elcpt/Documents/trainticket-chaos-experiments/probes/trainticket_probes.py'
+[36m[2021-05-10 21:06:56 DEBUG] [activity:180][39m   => succeeded with 'True'
+[36m[2021-05-10 21:06:56 DEBUG] [__init__:355][39m No controls to apply on 'activity'
+[36m[2021-05-10 21:06:56 DEBUG] [__init__:355][39m No controls to apply on 'method'
+[36m[2021-05-10 21:06:56 DEBUG] [run:496][39m Running steady-state hypothesis after the method
+[32m[2021-05-10 21:06:56 INFO] [hypothesis:183][39m Steady state hypothesis: Everything is normal, ticket reservations should work
+[36m[2021-05-10 21:06:56 DEBUG] [__init__:355][39m No controls to apply on 'hypothesis'
+[36m[2021-05-10 21:06:56 DEBUG] [__init__:355][39m No controls to apply on 'activity'
+[32m[2021-05-10 21:06:56 INFO] [activity:161][39m Probe: preserve-service-working
+[36m[2021-05-10 21:06:56 DEBUG] [python:34][39m Activity 'preserve-service-working' loaded from '/home/elcpt/Documents/trainticket-chaos-experiments/probes/trainticket_probes.py'
+[36m[2021-05-10 21:06:56 DEBUG] [activity:180][39m   => succeeded with 'False'
+[36m[2021-05-10 21:06:56 DEBUG] [__init__:355][39m No controls to apply on 'activity'
+[36m[2021-05-10 21:06:56 DEBUG] [hypothesis:211][39m allowed tolerance is True
+[36m[2021-05-10 21:06:56 DEBUG] [__init__:355][39m No controls to apply on 'hypothesis'
+[31m[2021-05-10 21:06:56 CRITICAL] [run:507][39m Steady state probe 'preserve-service-working' is not in the given tolerance so failing this experiment
+[32m[2021-05-10 21:06:56 INFO] [run:421][39m Experiment ended with status: deviated
+[32m[2021-05-10 21:06:56 INFO] [run:423][39m The steady-state has deviated, a weakness may have been discovered
+[36m[2021-05-10 21:06:56 DEBUG] [__init__:355][39m No controls to apply on 'experiment'
+[36m[2021-05-10 21:06:56 DEBUG] [__init__:72][39m Cleaning up controls
+[36m[2021-05-10 21:06:56 DEBUG] [caching:42][39m Clearing activities cache
