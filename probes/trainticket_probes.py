@@ -210,8 +210,8 @@ def scenario_two_broken_probe():
 def scenario_three_steady_state_probe():
     # TODO: Move this login/auth part into a new function to avoid duplicate code
     # Start the Load Generator to create background load reflecting user interaction with the system
-    os.system(f"{os.getcwd()}/steady-state.sh")
-    print("Loadgenerators started, beginning steady state check")
+    #os.system(f"{os.getcwd()}/steady-state.sh")
+    #print("Loadgenerators started, beginning steady state check")
 
     # Log in to TrainTicket to be authorized for subsequent requests
     login_response = requests.post(f"http://localhost:8080/api/v1/users/login", json = {"username": "admin", "password": "222222"})
@@ -267,8 +267,8 @@ def scenario_three_rollback_preserve_controller():
 
 def scenario_three_broken_probe():
     # Start the Load Generator to create background load reflecting user interaction with the system
-    os.system(f"{os.getcwd()}/steady-state.sh")
-    print("Loadgenerators started, beginning steady state check")
+    #os.system(f"{os.getcwd()}/steady-state.sh")
+    #print("Loadgenerators started, beginning steady state check")
 
     # Log in to TrainTicket to be authorized for subsequent requests
     login_response = requests.post(f"http://localhost:8080/api/v1/users/login", json = {"username": "admin", "password": "222222"})
