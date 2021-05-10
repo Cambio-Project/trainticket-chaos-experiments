@@ -17,13 +17,16 @@ import pandas as pd
 
 def steady_state_load():
     os.system(f"{os.getcwd()}/steady-state.sh")
-    print("Execution of shell script finished. Evaluating responses.")
+    print("Execution of shell script finished. Killing generators and evaluating responses.")
+    kill_load_generators()
     csv_df = pd.read_csv("steady-log.csv")
     csv_df["Avg Response Time"].replace(0, float('nan')) # Remove zeroes, as they make the average meaningless
     mean_avg_response_time = csv_df["Avg Response Time"].mean()
+    new_name = time.strftime("steady-state_%Y-%m-%d_%H-%M.csv")
+    os.system(f"mv steady-log.csv {new_name}")
 
     print(f"Average response time is: {mean_avg_response_time}")
-    response_time_ok = mean_avg_response_time < 0.5
+    response_time_ok = mean_avg_response_time < 1.0
     return bool(response_time_ok) # Workaround to really stupid numpy behaviour (FIXME)
 
 
@@ -38,7 +41,8 @@ def food_service_overload_probe():
     mean_avg_response_time = csv_df["Avg Response Time"].mean()
 
     print(f"Average time during overload is: {mean_avg_response_time}")
-    response_time_ok = mean_avg_response_time < 0.5 # Workaround due to numpy being dumb, same as above: FIXME
+    response_time_ok = mean_avg_response_time < 2.0 # Workaround due to numpy being dumb, same as above: FIXME
+    kill_load_generators()
     return bool(response_time_ok)
 
 
