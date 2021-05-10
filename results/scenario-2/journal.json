@@ -1,0 +1,141 @@
+{
+  "chaoslib-version": "1.19.0",
+  "platform": "Linux-5.4.0-72-generic-x86_64-with-glibc2.29",
+  "node": "elcpt-mint",
+  "experiment": {
+    "version": "0.0.1",
+    "title": "How does the inside_payment service react to faulty database configs?",
+    "description": "After swapping configs, the application should behave in a faulty way",
+    "tags": [
+      "trainticket"
+    ],
+    "steady-state-hypothesis": {
+      "title": "Everything is normal, payments should work",
+      "probes": [
+        {
+          "type": "probe",
+          "name": "inside_payment_service_working",
+          "tolerance": true,
+          "provider": {
+            "type": "python",
+            "module": "trainticket_probes",
+            "func": "scenario_two_steady_state_probe"
+          }
+        }
+      ]
+    },
+    "method": [
+      {
+        "type": "action",
+        "name": "switch-db-configs",
+        "provider": {
+          "type": "python",
+          "module": "trainticket_probes",
+          "func": "scenario_two_switch_bad_config"
+        }
+      },
+      {
+        "type": "probe",
+        "name": "inside_payment_service_broken",
+        "tolerance": true,
+        "provider": {
+          "type": "python",
+          "module": "trainticket_probes",
+          "func": "scenario_two_broken_probe"
+        }
+      }
+    ],
+    "rollbacks": [],
+    "dry": false
+  },
+  "start": "2021-05-10T14:21:09.781306",
+  "status": "failed",
+  "deviated": true,
+  "steady_states": {
+    "before": {
+      "steady_state_met": true,
+      "probes": [
+        {
+          "activity": {
+            "type": "probe",
+            "name": "inside_payment_service_working",
+            "tolerance": true,
+            "provider": {
+              "type": "python",
+              "module": "trainticket_probes",
+              "func": "scenario_two_steady_state_probe"
+            }
+          },
+          "output": true,
+          "status": "succeeded",
+          "start": "2021-05-10T14:21:09.782132",
+          "end": "2021-05-10T14:21:16.277542",
+          "duration": 6.49541,
+          "tolerance_met": true
+        }
+      ]
+    },
+    "after": {
+      "steady_state_met": false,
+      "probes": [
+        {
+          "activity": {
+            "type": "probe",
+            "name": "inside_payment_service_working",
+            "tolerance": true,
+            "provider": {
+              "type": "python",
+              "module": "trainticket_probes",
+              "func": "scenario_two_steady_state_probe"
+            }
+          },
+          "output": false,
+          "status": "succeeded",
+          "start": "2021-05-10T14:21:27.673433",
+          "end": "2021-05-10T14:21:33.202041",
+          "duration": 5.528608,
+          "tolerance_met": false
+        }
+      ]
+    },
+    "during": []
+  },
+  "run": [
+    {
+      "activity": {
+        "type": "action",
+        "name": "switch-db-configs",
+        "provider": {
+          "type": "python",
+          "module": "trainticket_probes",
+          "func": "scenario_two_switch_bad_config"
+        }
+      },
+      "output": null,
+      "status": "succeeded",
+      "start": "2021-05-10T14:21:16.278284",
+      "end": "2021-05-10T14:21:20.368294",
+      "duration": 4.09001
+    },
+    {
+      "activity": {
+        "type": "probe",
+        "name": "inside_payment_service_broken",
+        "tolerance": true,
+        "provider": {
+          "type": "python",
+          "module": "trainticket_probes",
+          "func": "scenario_two_broken_probe"
+        }
+      },
+      "output": true,
+      "status": "succeeded",
+      "start": "2021-05-10T14:21:20.368498",
+      "end": "2021-05-10T14:21:27.672826",
+      "duration": 7.304328
+    }
+  ],
+  "rollbacks": [],
+  "end": "2021-05-10T14:21:33.202445",
+  "duration": 23.43526601791382
+}
