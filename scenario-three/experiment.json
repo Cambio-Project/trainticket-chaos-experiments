@@ -37,15 +37,6 @@
                 "module": "trainticket_probes",
                 "func": "scenario_three_broken_probe"
             }
-        },
-        {
-            "type": "action",
-            "name": "rollback-preserve-controller",
-            "provider": {
-                "type": "python",
-                "module": "trainticket_probes",
-                "func": "scenario_three_rollback_preserve_controller"
-            }
         }
     ],
     "rollbacks": [
@@ -56,15 +47,6 @@
                 "type": "python",
                 "module": "trainticket_probes",
                 "func": "kill_load_generators"
-            }
-        },
-        {
-            "type": "action",
-            "name": "rollback-preserve-controller",
-            "provider": {
-                "type": "python",
-                "module": "trainticket_probes",
-                "func": "scenario_three_rollback_preserve_controller"
             }
         }
     ]
