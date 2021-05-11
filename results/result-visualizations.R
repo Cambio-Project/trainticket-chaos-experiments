@@ -43,7 +43,7 @@ summary(sc4_steady_after_data)
 create_and_save_success_scatter_plot <- function(data, scenario_num, data_label) {
   plot_label <- paste("Successful Requests over Time - Scenario", scenario_num, data_label)
   x_label <- "Time (in sec)"
-  y_label <- "Succesful Requests"
+  y_label <- "Number of Succesful Requests"
   
   # Create Plot
   scatter_plot <- ggplot(data=data, aes(x=Target.Time, Successful.Transactions)) +
@@ -54,7 +54,24 @@ create_and_save_success_scatter_plot <- function(data, scenario_num, data_label)
     labs(title = plot_label)
   
   save_plot(scatter_plot, plot_label)
- }
+}
+
+# Creates a fails scatter plot and saves it to PDF
+create_and_save_fails_scatter_plot <- function(data, scenario_num, data_label) {
+  plot_label <- paste("Failed Requests over Time - Scenario", scenario_num, data_label)
+  x_label <- "Time (in sec)"
+  y_label <- "Number of Failed Requests"
+  
+  # Create Plot
+  scatter_plot <- ggplot(data=data, aes(x=Target.Time, Failed.Transactions)) +
+    geom_point() +
+    geom_rug(col="steelblue",alpha=0.1, size=1.5) +
+    xlab(x_label) +
+    ylab(y_label) +
+    labs(title = plot_label)
+  
+  save_plot(scatter_plot, plot_label)
+}
 
 # Creates a response time scatter plot and saves it to PDF
 create_and_save_response_time_scatter_plot <- function(data, scenario_num, data_label) {
@@ -93,14 +110,17 @@ data_label <- "(Steady State Before)"
 data <- sc1_steady_before_data
 create_and_save_response_time_scatter_plot(data, scenario_num, data_label)
 create_and_save_success_scatter_plot(data, scenario_num, data_label)
+create_and_save_fails_scatter_plot(data, scenario_num, data_label)
 data_label <- "(Steady State After)"
 data <- sc1_steady_after_data
 create_and_save_response_time_scatter_plot(data, scenario_num, data_label)
 create_and_save_success_scatter_plot(data, scenario_num, data_label)
+create_and_save_fails_scatter_plot(data, scenario_num, data_label)
 data_label <- "(Overload)"
 data <- sc1_overload_data
 create_and_save_response_time_scatter_plot(data, scenario_num, data_label)
 create_and_save_success_scatter_plot(data, scenario_num, data_label)
+create_and_save_fails_scatter_plot(data, scenario_num, data_label)
 
 # Scenario 2
 scenario_num <- 2
@@ -108,10 +128,12 @@ data_label <- "(Steady State Before)"
 data <- sc2_steady_before_data
 create_and_save_response_time_scatter_plot(data, scenario_num, data_label)
 create_and_save_success_scatter_plot(data, scenario_num, data_label)
+create_and_save_fails_scatter_plot(data, scenario_num, data_label)
 data_label <- "(Steady State After)"
 data <- sc2_steady_after_data
 create_and_save_response_time_scatter_plot(data, scenario_num, data_label)
 create_and_save_success_scatter_plot(data, scenario_num, data_label)
+create_and_save_fails_scatter_plot(data, scenario_num, data_label)
 
 # Scenario 3
 scenario_num <- 3
@@ -119,10 +141,12 @@ data_label <- "(Steady State Before)"
 data <- sc3_steady_before_data
 create_and_save_response_time_scatter_plot(data, scenario_num, data_label)
 create_and_save_success_scatter_plot(data, scenario_num, data_label)
+create_and_save_fails_scatter_plot(data, scenario_num, data_label)
 data_label <- "(Steady State After)"
 data <- sc3_steady_after_data
 create_and_save_response_time_scatter_plot(data, scenario_num, data_label)
 create_and_save_success_scatter_plot(data, scenario_num, data_label)
+create_and_save_fails_scatter_plot(data, scenario_num, data_label)
 
 # Scenario 4
 scenario_num <- 4
@@ -130,7 +154,9 @@ data_label <- "(Steady State Before)"
 data <- sc4_steady_before_data
 create_and_save_response_time_scatter_plot(data, scenario_num, data_label)
 create_and_save_success_scatter_plot(data, scenario_num, data_label)
+create_and_save_fails_scatter_plot(data, scenario_num, data_label)
 data_label <- "(Steady State After)"
 data <- sc4_steady_after_data
 create_and_save_response_time_scatter_plot(data, scenario_num, data_label)
 create_and_save_success_scatter_plot(data, scenario_num, data_label)
+create_and_save_fails_scatter_plot(data, scenario_num, data_label)
