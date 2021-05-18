@@ -4,7 +4,7 @@ services:
     response_content_type: json
     hosts:
       # IP/Domain of target e.g.:
-      - localhost:8080/api/v1
+      - 192.168.1.120:8080/api/v1
     common_headers:
       Content-Type: application/json
 

@@ -1,5 +1,5 @@
 #!/bin/bash
-# Steady state file for scenario 2
+# Steady state file for scenario 5
 echo "Starting loadgenerator in background"
 java -jar "../loadgenerator/httploadgenerator.jar" loadgenerator &
 sleep 3s
