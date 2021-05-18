@@ -15,7 +15,8 @@ sc3_steady_before_data <- read.csv("scenario-3/steady-log-pre.csv")
 sc3_steady_after_data <- read.csv("scenario-3/steady-log-post.csv")
 sc4_steady_before_data <- read.csv("scenario-4/steady-log-pre.csv")
 sc4_steady_after_data <- read.csv("scenario-4/steady-log-post.csv")
-
+sc5_steady_before_data <- read.csv("scenario-5/steady-log-pre.csv")
+sc5_steady_after_data <- read.csv("scenario-5/steady-log-post.csv")
 
 
 ##---------------------------------------------------------------##
@@ -32,7 +33,8 @@ summary(sc3_steady_before_data)
 summary(sc3_steady_after_data)
 summary(sc4_steady_before_data)
 summary(sc4_steady_after_data)
-
+summary(sc5_steady_before_data)
+summary(sc5_steady_after_data)
 
 
 ##---------------------------------------------------------------##
@@ -157,6 +159,19 @@ create_and_save_success_scatter_plot(data, scenario_num, data_label)
 create_and_save_fails_scatter_plot(data, scenario_num, data_label)
 data_label <- "(Steady State After)"
 data <- sc4_steady_after_data
+create_and_save_response_time_scatter_plot(data, scenario_num, data_label)
+create_and_save_success_scatter_plot(data, scenario_num, data_label)
+create_and_save_fails_scatter_plot(data, scenario_num, data_label)
+
+# Scenario 5
+scenario_num <- 5
+data_label <- "(Steady State Before)"
+data <- sc5_steady_before_data
+create_and_save_response_time_scatter_plot(data, scenario_num, data_label)
+create_and_save_success_scatter_plot(data, scenario_num, data_label)
+create_and_save_fails_scatter_plot(data, scenario_num, data_label)
+data_label <- "(Steady State After)"
+data <- sc5_steady_after_data
 create_and_save_response_time_scatter_plot(data, scenario_num, data_label)
 create_and_save_success_scatter_plot(data, scenario_num, data_label)
 create_and_save_fails_scatter_plot(data, scenario_num, data_label)
