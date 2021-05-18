@@ -1,0 +1,85 @@
+{
+  "chaoslib-version": "1.19.0",
+  "platform": "Linux-5.4.0-72-generic-x86_64-with-glibc2.29",
+  "node": "elcpt-mint",
+  "experiment": {
+    "version": "0.0.1",
+    "title": "What happens if we overload the food service with requests?",
+    "description": "The application should recover some time after an overload.",
+    "tags": [
+      "trainticket"
+    ],
+    "steady-state-hypothesis": {
+      "title": "Response times are in normal ranges",
+      "probes": [
+        {
+          "type": "probe",
+          "name": "response-times-food-service-normal",
+          "tolerance": true,
+          "provider": {
+            "type": "python",
+            "module": "trainticket_probes",
+            "func": "steady_state_load"
+          }
+        }
+      ]
+    },
+    "method": [
+      {
+        "type": "action",
+        "name": "overload-foodservice",
+        "provider": {
+          "type": "python",
+          "module": "trainticket_probes",
+          "func": "food_service_overload_action"
+        }
+      },
+      {
+        "type": "probe",
+        "name": "overload-foodservice-response-check",
+        "tolerance": true,
+        "provider": {
+          "type": "python",
+          "module": "trainticket_probes",
+          "func": "food_service_overload_probe"
+        }
+      }
+    ],
+    "rollbacks": [],
+    "dry": false
+  },
+  "start": "2021-04-16T08:17:13.648920",
+  "status": "failed",
+  "deviated": false,
+  "steady_states": {
+    "before": {
+      "steady_state_met": false,
+      "probes": [
+        {
+          "activity": {
+            "type": "probe",
+            "name": "response-times-food-service-normal",
+            "tolerance": true,
+            "provider": {
+              "type": "python",
+              "module": "trainticket_probes",
+              "func": "steady_state_load"
+            }
+          },
+          "output": false,
+          "status": "succeeded",
+          "start": "2021-04-16T08:17:13.649390",
+          "end": "2021-04-16T08:29:34.283528",
+          "duration": 740.634138,
+          "tolerance_met": false
+        }
+      ]
+    },
+    "after": null,
+    "during": []
+  },
+  "run": [],
+  "rollbacks": [],
+  "end": "2021-04-16T08:29:34.283786",
+  "duration": 740.6428966522217
+}
