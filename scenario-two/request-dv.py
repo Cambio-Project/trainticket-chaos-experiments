@@ -54,6 +54,7 @@ payment_json = {
 
 payment_result = requests.post("http://localhost:18673/api/v1/inside_pay_service/inside_payment", json=payment_json, headers=auth_header)
 print(f"INFO: Order ID is {order_id}")
+print(f"Payment result: {payment_result.json()}")
 
 # Query payments/orders and check whether payment has actually worked
 payment_query_result = requests.get("http://localhost:18673/api/v1/inside_pay_service/inside_payment/payment", headers=auth_header)
