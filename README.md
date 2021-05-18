@@ -7,6 +7,9 @@ Specifically, we provide the files used in experiments based on real-world failu
 Note that these experiments do not follow the traditional definition of Chaos Engineering, as their goal is to validate the behavior of the system rather than to explore unknown behavior.
 Moreover, Chaos Toolkit is used as a tool for fault injection and validation instead of exploration.
 
+In the [`trainticket-fork`](https://github.com/Cambio-Project/trainticket-fork) repository, we provide the branches of TrainTicket that were used in the experiments.
+These contain additional files to be used for the fault injection with the Chaos Toolkit.
+
 ## Contents
 
 - [`probes/trainticket_probes.py`](probes/trainticket_probes.py) is a Python script with all probes used in the experiments.
