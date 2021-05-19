@@ -1,4 +1,4 @@
-Target Time,Load Intensity,Successful Transactions,Failed Transactions,Dropped Transactions,Avg Response Time,Response Time CV,Final Batch Dispatch Time,10.05.2021;15:34:28017
+Target Time,Load Intensity,Successful Transactions,Failed Transactions,Dropped Transactions,Avg Response Time,Response Time CV,Final Batch Dispatch Time
 0.5,10.0,0,0,0,0.0,0.0,0.493
 1.5,8.0,18,0,0,0.4025,0.7093849126516486,1.47
 2.5,10.0,9,0,0,0.09455555555555556,0.43816568956792823,2.491
