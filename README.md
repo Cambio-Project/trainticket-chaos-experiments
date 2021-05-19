@@ -1,6 +1,6 @@
 # Chaos Experiments for TrainTicket
-This repository contains the artifacts created during a student research project at the [University of Stuttgart]().
-They contain experiments for the TrainTicket benchmark system, partially adapted/ported from work provided by [University of Würzburg](https://www.uni-wuerzburg.de/en/home/).
+This repository contains the artifacts created during a student research project at the [University of Stuttgart](https://www.uni-stuttgart.de/).
+They contain experiments for the TrainTicket benchmark system, partially adapted/ported from work provided by [Martin Straesser](mailto:martin.straesser@uni-wuerzburg.de) at [University of Würzburg](https://www.uni-wuerzburg.de/en/home/).
 TrainTicket was developed at the [Fudan University](https://www.fudan.edu.cn/en/) and can be found on [GitHub](https://github.com/FudanSELab/train-ticket).
 
 Specifically, we provide the files used in experiments based on real-world failures in microservice systems, replicated in TrainTicket.
